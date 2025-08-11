@@ -14,6 +14,16 @@ def buildDockerImage(tag) {
 pipeline {
     agent { label 'build-agent' }
 
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master')
+        choice(name: 'ENV', choices: ['dev', 'staging', 'ese-prod'])
+        booleanParam(name: 'DEPLOY', defaultValue: true)
+    }
+    
+    environment {
+        ENV = 'ese-prod'  
+    }
+    
     stages {
         stage('Generate Tag') {
             steps {
