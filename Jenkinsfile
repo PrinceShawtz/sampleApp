@@ -45,7 +45,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/princeshawtz/sampleApp.git', branch: 'master'
+                git url: 'https://github.com/princeshawtz/sampleApp.git', branch: "${params.BRANCH}"
             }
         }
 
