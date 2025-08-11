@@ -66,6 +66,7 @@ pipeline {
 
                 withCredentials([file(credentialsId: 'kubeconfig-creds', variable: 'KUBECONFIG')]) {
                     script {
+                        sh "kubectl create namespace ${params.ENV} --dry-run=client -o yaml | kubectl apply -f -"
                         sh """
                             sed -i "s/IMAGE_TAG/${buildTag}/g" deployment.yaml
                             kubectl apply -f deployment.yaml --namespace=${ENV}
