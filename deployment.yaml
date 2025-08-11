@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sampleapp-deployment  
+  namespace: __NAMESPACE__
+  labels:
+    app: sampleapp
 spec:
   replicas: 3
 
@@ -16,7 +19,8 @@ spec:
     spec:
       containers:
       - name: sampleapp
-        image: dockeritc778/sampleapp:IMAGE_TAG
+        image: __IMAGE__
+        # image: dockeritc778/sampleapp:IMAGE_TAG
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
