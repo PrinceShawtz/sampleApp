@@ -15,7 +15,7 @@ pipeline {
     agent { label 'build-agent' }
 
     parameters {
-        string(name: 'BRANCH', defaultValue: 'master')
+        string(name: 'BRANCH', defaultValue: 'Ese`s Branch')
         choice(name: 'ENV', choices: ['dev', 'staging', 'ese-prod'])
         booleanParam(name: 'DEPLOY', defaultValue: true)
     }
@@ -38,6 +38,7 @@ pipeline {
         stage('Use Tag') {
             steps {
                 script {
+                    echo "This is: ${params.BRANCH}"
                     echo "The build tag is: ${buildTag}"
                 }
             }
